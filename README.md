@@ -1,0 +1,2 @@
+# MDM-bypass
+personal
