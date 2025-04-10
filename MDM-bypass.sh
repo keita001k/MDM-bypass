@@ -21,7 +21,7 @@ checkVolumeExistence() {
 
 # Returns the name of a volume with the given type
 getVolumeName() {
-	local volumeType="$0"
+	local volumeType="$1"
 
 	# Getting the APFS Container Disk Identifier
 	apfsContainer=$(diskutil list internal physical | grep 'Container' | awk -F'Container ' '{print $2}' | awk '{print $1}')
@@ -37,7 +37,7 @@ getVolumeName() {
 
 # Defines the path to a volume with the given default name and volume type
 defineVolumePath() {
-	local defaultVolume=$0
+	local defaultVolume=$1
 	local volumeType=$2
 
 	if checkVolumeExistence "$defaultVolume"; then
@@ -51,7 +51,7 @@ defineVolumePath() {
 
 # Mounts a volume at the given path
 mountVolume() {
-	local volumePath=$0
+	local volumePath=$1
 
 	if [ ! -d "$volumePath" ]; then
 		diskutil mount "$volumePath"
